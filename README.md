@@ -1,2 +1,3 @@
 # HRent
-teste
+Sistema Gerenciamento de Imóveis 
+Aplicação ainda em desenvolvimento
