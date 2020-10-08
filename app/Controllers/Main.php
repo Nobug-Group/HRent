@@ -9,7 +9,7 @@ class Main extends BaseController{
             'mensagem' => 'Aqui você encontra a história da empresa'
         );
         
-        echo view('head',$dados);
-        echo view('template');
+        
+        echo view('teste',$dados);
     }
 }

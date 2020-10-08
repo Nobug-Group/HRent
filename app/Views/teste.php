@@ -1,39 +1,19 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="pt-br">
+<?= $this->extend('templates\main') ?>
 
-<body class="hold-transition sidebar-mini">
+<!--Titulo da pagina -->
+<?= $this->section('templates\maintitle') ?>
+    <h1 class="m-0 text-dark">Principal</h1>
+<?= $this->endSection() ?>
 
-<div class="wrapper">
-  <?= $this->include('navbars') ?>
-  <?= $this->section('content') ?>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<!--Caminho da Pagina -->
+<?= $this->section('templates\fullpath') ?>
+    <li class="breadcrumb-item"><a href="#">Teste</a></li>
+    <li class="breadcrumb-item active">Starter Page</li>
+<?= $this->endSection() ?>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
+<!--Conteudo Principal -->
+<?= $this->section('templates\conteudo_principal') ?>
+    <div class="row">
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
@@ -91,17 +71,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <?= $this->endSection() ?>
-  <?= $this->include('sidebar') ?>
-  <?= $this->include('footer') ?>
-
-</div>
-  <?= $this->include('scripts') ?>
-
-</body>
-</html>
+<?= $this->endSection() ?>
