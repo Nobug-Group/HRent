@@ -11,8 +11,5 @@ class Main extends BaseController{
         
         echo view('head',$dados);
         echo view('template');
-        echo view('sidebar');
-        echo view('footer');
-        echo view('scripts');
     }
 }
