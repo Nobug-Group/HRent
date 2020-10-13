@@ -63,6 +63,7 @@ class Autoload extends AutoloadConfig
 	 * @var array
 	 */
 	public $classmap = [
-		'Template'	=>	'/app/Libraries/template.php'
+		'IonAuth' => ROOTPATH . 'Ion_Auth'
 	];
+	
 }
