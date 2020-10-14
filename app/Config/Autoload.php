@@ -42,6 +42,8 @@ class Autoload extends AutoloadConfig
 	public $psr4 = [
 		APP_NAMESPACE => APPPATH, // For custom app namespace
 		'Config'      => APPPATH . 'Config',
+		'IonAuth' => APPPATH . 'ThirdParty/Ion_Auth'
+
 	];
 
 	/**
@@ -63,7 +65,7 @@ class Autoload extends AutoloadConfig
 	 * @var array
 	 */
 	public $classmap = [
-		'IonAuth' => ROOTPATH . 'Ion_Auth'
+		//'IonAuth' => APPPATH . 'ThirdParty/Ion_Auth'
 	];
 	
 }

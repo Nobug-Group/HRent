@@ -1,6 +1,8 @@
 <?php
 namespace IonAuth\Controllers;
 
+use App\Controllers\BaseController;
+
 /**
  * Class Auth
  *
@@ -10,8 +12,7 @@ namespace IonAuth\Controllers;
  * @author   Benoit VRIGNAUD <benoit.vrignaud@zaclys.net>
  * @license  https://opensource.org/licenses/MIT	MIT License
  */
-class Auth extends \CodeIgniter\Controller
-{
+class Auth extends BaseController{
 
 	/**
 	 *

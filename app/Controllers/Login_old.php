@@ -1,8 +1,11 @@
 <?php namespace App\Controllers;
 
-class Login extends BaseController{
+class Login extends \IonAuth\Controllers\Auth{
 
-
+    public function __construct()
+	{
+        parent::__construct();
+    }
     public function index()
     {
         $dados = array(
@@ -11,6 +14,6 @@ class Login extends BaseController{
             'othercss' => ''
         );
         
-        echo view('login',$dados);
+        echo view('Auth/login');
     }
 }

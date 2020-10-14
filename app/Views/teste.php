@@ -1,18 +1,18 @@
-<?= $this->extend('templates\main') ?>
+<?= $this->extend('templates/main') ?>
 
 <!--Titulo da pagina -->
-<?= $this->section('templates\maintitle') ?>
+<?= $this->section('templates/maintitle') ?>
     <h1 class="m-0 text-dark">Principal</h1>
 <?= $this->endSection() ?>
 
 <!--Caminho da Pagina -->
-<?= $this->section('templates\fullpath') ?>
+<?= $this->section('templates/fullpath') ?>
     <li class="breadcrumb-item"><a href="#">Teste</a></li>
     <li class="breadcrumb-item active">Starter Page</li>
 <?= $this->endSection() ?>
 
 <!--Conteudo Principal -->
-<?= $this->section('templates\conteudo_principal') ?>
+<?= $this->section('templates/conteudo_principal') ?>
     <div class="row">
           <div class="col-lg-6">
             <div class="card">
