@@ -21,9 +21,9 @@ return [
 
 	// Login
 	'login_heading'         => 'Login',
-	'login_subheading'      => 'Por favor entre com seu login/email e senha abaixo.',
-	'login_identity_label'  => 'Login/Email:',
-	'login_password_label'  => 'Senha:',
+	'login_subheading'      => 'Entre com e-mail e senha para iniciar.',
+	'login_identity_label'  => 'Email',
+	'login_password_label'  => 'Senha',
 	'login_remember_label'  => 'Lembre-me:',
 	'login_submit_btn'      => 'Login',
 	'login_forgot_password' => 'Esqueceu sua senha?',
