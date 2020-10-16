@@ -17,6 +17,7 @@ class Main extends Autentica{
 			$this->data['message'] = $this->validation->getErrors() ? $this->validation->listErrors($this->validationListTemplate) : $this->session->getFlashdata('message');
 			//list the users
 			$this->data['isadmin'] = $this->ionAuth->isAdmin();
+			$this->data['logged_user'] = $this->fullname();
 			//foreach ($this->data['users'] as $k => $user)
 			//{
 			//	$this->data['users'][$k]->groups = $this->ionAuth->getUsersGroups($user->id)->getResult();
@@ -45,6 +46,7 @@ class Main extends Autentica{
 			$this->data['message'] = $this->validation->getErrors() ? $this->validation->listErrors($this->validationListTemplate) : $this->session->getFlashdata('message');
 			//list the users
 			$this->data['isadmin'] = $this->ionAuth->isAdmin();
+			$this->data['logged_user'] = $this->fullname();
 			$this->data['users'] = $this->ionAuth->users()->result();
 			foreach ($this->data['users'] as $k => $user)
 			{

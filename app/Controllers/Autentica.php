@@ -75,7 +75,6 @@ class Autentica extends BaseController{
 		helper(['form', 'url']);
 		$this->configIonAuth = config('IonAuth');
 		$this->session       = \Config\Services::session();
-
 		if (! empty($this->configIonAuth->templates['errors']['list']))
 		{
 			$this->validationListTemplate = $this->configIonAuth->templates['errors']['list'];
@@ -101,6 +100,8 @@ class Autentica extends BaseController{
 			// set the flash data error message if there is one
 			$this->data['message'] = $this->validation->getErrors() ? $this->validation->listErrors($this->validationListTemplate) : $this->session->getFlashdata('message');
 			//list the users
+			$this->data['isadmin'] = $this->ionAuth->isAdmin();
+			$this->data['logged_user'] = $this->fullname();
 			$this->data['users'] = $this->ionAuth->users()->result();
 			foreach ($this->data['users'] as $k => $user)
 			{
@@ -112,6 +113,18 @@ class Autentica extends BaseController{
 
 	/**
 	 * Log the user in
+	 *
+	 * @return string|\CodeIgniter\HTTP\RedirectResponse
+	 */
+	protected function fullName(){
+			$loguser = $this->ionAuth->user()->row();
+			$fullName = $loguser->first_name.' '.$loguser->last_name;
+			return $fullName;
+	}
+
+
+	/**
+	 * Nome Completo para uso na pagina principal
 	 *
 	 * @return string|\CodeIgniter\HTTP\RedirectResponse
 	 */
@@ -455,7 +468,7 @@ class Autentica extends BaseController{
 		{
 			// redirect them to the auth page
 			$this->session->setFlashdata('message', $this->ionAuth->messages());
-			return redirect()->to('/auth');
+			return redirect()->to('/Main/gerenciarUsuarios');
 		}
 		else
 		{
@@ -511,7 +524,7 @@ class Autentica extends BaseController{
 			}
 
 			// redirect them back to the auth page
-			return redirect()->to('/auth');
+			return redirect()->to('/Main/gerenciarUsuarios');
 		}
 	}
 
@@ -638,7 +651,7 @@ class Autentica extends BaseController{
 	{
 		if ($this->ionAuth->isAdmin())
 		{
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 		return redirect()->to('/');
 	}
@@ -653,10 +666,10 @@ class Autentica extends BaseController{
 	public function edit_user(int $id)
 	{
 		$this->data['title'] = lang('Auth.edit_user_heading');
-
+		$this->data['isadmin'] = $this->ionAuth->isAdmin();
 		if (! $this->ionAuth->loggedIn() || (! $this->ionAuth->isAdmin() && ! ($this->ionAuth->user()->row()->id == $id)))
 		{
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 
 		$user          = $this->ionAuth->user($id)->row();
@@ -776,7 +789,7 @@ class Autentica extends BaseController{
 			'type' => 'password',
 		];
 		$this->data['ionAuth'] = $this->ionAuth;
-
+		$this->data['logged_user'] = $this->fullName();
 		return $this->renderPage($this->viewsFolder . DIRECTORY_SEPARATOR . 'edit_user', $this->data);
 	}
 
