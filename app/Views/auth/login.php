@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<?= $this->include('templates\head') ?>
+<?= $this->include('templates/head') ?>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -57,9 +57,9 @@
 </div>
 <!-- /.login-box -->
 
-  <?php echo $message;?>
+<div id="infoMessage"><?php echo $message;?></div>
   
-  <?= $this->include('templates\scripts') ?>
+<?= $this->include('templates/scripts') ?>
 
 </body>
 </html>

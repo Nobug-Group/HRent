@@ -23,7 +23,7 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <?= $this->renderSection('templates\conteudo_principal') ?>
+        <?= $this->renderSection('templates/conteudo_principal') ?>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
