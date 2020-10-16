@@ -94,12 +94,6 @@ class Autentica extends BaseController{
 			// redirect them to the login page
 			return redirect()->to('/Autentica/login');
 		}
-		else if (! $this->ionAuth->isAdmin()) // remove this elseif if you want to enable this for non-admins
-		{
-			// redirect them to the home page because they must be an administrator to view this
-			//show_error('You must be an administrator to view this page.');
-			throw new \Exception('You must be an administrator to view this page.');
-		}
 		else
 		{
 			$this->data['title'] = lang('Auth.index_heading');
@@ -112,7 +106,7 @@ class Autentica extends BaseController{
 			{
 				$this->data['users'][$k]->groups = $this->ionAuth->getUsersGroups($user->id)->getResult();
 			}
-			return $this->renderPage($this->viewsFolder . DIRECTORY_SEPARATOR . 'index', $this->data);
+			return $this->renderPage('Main', $this->data);
 		}
 	}
 

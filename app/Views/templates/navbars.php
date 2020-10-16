@@ -149,32 +149,47 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
-		
-		
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-users"></i>
+          <li class="nav-item">
+            <a href="/Main" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Usuários
-                <i class="right fas fa-angle-left"></i>
-                
+                Dashboard
+                <!--<span class="right badge badge-danger">New</span>-->
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gerenciar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Usuários</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          <?php if ($isadmin): ?>
+            <li class="nav-item has-treeview menu-close mt-2 pb-2 mb-2">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Usuários e Grupos
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/Main/gerenciarUsuarios" class="nav-link">
+                    <i class="fas fa-users-cog"></i>
+                    <p>Gerenciar Usuários</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fas fa-user-plus"></i>
+                    <p>Adicionar Usuários</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fas fa-user-times"></i>
+                    <p>Excluir Usuários</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          <?php endif ?>
+          
            
           <li class="nav-item">
             <a href="#" class="nav-link">
