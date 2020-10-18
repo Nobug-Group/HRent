@@ -110,7 +110,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Autentica/logout" role="button" ata-toggle="tooltip" data-placement="bottom" title="Sair do Sistema"><i class="fas fa-sign-out-alt"></i></a>
+        <a class="nav-link" href="/Autentica/logout" role="button" data-toggle="tooltip" data-placement="bottom" title="Sair do Sistema"><i class="fas fa-sign-out-alt"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
@@ -173,20 +173,14 @@
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="/Main/gerenciarUsuarios" class="nav-link">
-                    <i class="fas fa-users-cog"></i>
+                    <i class="fas fa-user-cog"></i>
                     <p>Gerenciar Usuários</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
-                    <i class="fas fa-user-plus"></i>
-                    <p>Adicionar Usuários</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-user-times"></i>
-                    <p>Excluir Usuários</p>
+                    <i class="fas fa-users-cog"></i>
+                    <p>Gerenciar Grupos</p>
                   </a>
                 </li>
               </ul>

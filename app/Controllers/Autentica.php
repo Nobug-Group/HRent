@@ -107,7 +107,7 @@ class Autentica extends BaseController{
 			{
 				$this->data['users'][$k]->groups = $this->ionAuth->getUsersGroups($user->id)->getResult();
 			}
-			return $this->renderPage('Main', $this->data);
+			return $this->renderPage('main', $this->data);
 		}
 	}
 
@@ -536,11 +536,10 @@ class Autentica extends BaseController{
 	public function create_user()
 	{
 		$this->data['title'] = lang('Auth.create_user_heading');
-
+		$this->data['isadmin'] = $this->ionAuth->isAdmin();
 		if (! $this->ionAuth->loggedIn() || ! $this->ionAuth->isAdmin())
 		{
-			return redirect()->to('/auth');
-		}
+			return redirect()->to('/Autentica');		}
 
 		$tables                        = $this->configIonAuth->tables;
 		$identityColumn                = $this->configIonAuth->identity;
@@ -581,7 +580,7 @@ class Autentica extends BaseController{
 			// check to see if we are creating the user
 			// redirect them back to the admin page
 			$this->session->setFlashdata('message', $this->ionAuth->messages());
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 		else
 		{
@@ -637,7 +636,7 @@ class Autentica extends BaseController{
 				'type'  => 'password',
 				'value' => set_value('password_confirm'),
 			];
-
+			$this->data['logged_user'] = $this->fullName();
 			return $this->renderPage($this->viewsFolder . DIRECTORY_SEPARATOR . 'create_user', $this->data);
 		}
 	}

@@ -24,7 +24,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Lista de Usuários</h3>
+                <div class="col">
+                    <h3 class="card-title">Lista de Usuários</h3>
+                </div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                       <a href="/Main/create_user" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo usuário ao Sistema"><i class="fas fa-user-plus fa-2x"></i></a>
+                    </li>
+                </ul>
+                    
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -34,9 +43,9 @@
                             <th><?php echo lang('Auth.index_fname_th');?></th>
                             <th><?php echo lang('Auth.index_lname_th');?></th>
                             <th><?php echo lang('Auth.index_email_th');?></th>
-                            <th><?php echo lang('Auth.index_groups_th');?></th>
-                            <th><?php echo lang('Auth.index_status_th');?></th>
-                            <th><?php echo lang('Auth.index_action_th');?></th> 
+                            <th class="text-center"><?php echo lang('Auth.index_groups_th');?></th>
+                            <th class="text-center"><?php echo lang('Auth.index_status_th');?></th>
+                            <th class="text-center"><?php echo lang('Auth.index_action_th');?></th> 
                         </tr>
                     </thead>
                     <tbody>
@@ -45,13 +54,29 @@
                                 <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
                                 <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
                                 <td><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>
-                                <td>
+                                <td class="text-center align-middle"> 
                                     <?php foreach ($user->groups as $group):?>
-                                        <?php echo anchor('Autentica/edit_group/' . $group->id, htmlspecialchars($group->name, ENT_QUOTES, 'UTF-8')); ?><br />
+                                        <?php 
+                                            echo anchor('Autentica/edit_group/' . $group->id, htmlspecialchars($group->name, ENT_QUOTES, 'UTF-8'),array('data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este grupo')); 
+                                        ?><br />
                                     <?php endforeach?>
                                 </td>
-                                <td><?php echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, lang('Auth.index_active_link')) : anchor("Autentica/activate/". $user->id, lang('Auth.index_inactive_link'));?></td>
-                                <td><?php echo anchor('Autentica/edit_user/' .  $user->id,' ',array('class' => 'fas fa-user-edit')) ;?></td>
+                                <td class="text-center align-middle">
+                                    <?php 
+                                        echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
+                                        anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
+                                    ?>
+                                </td>
+                                <td class="text-center align-middle">
+                                    <ul class="nav">
+                                        <li class="nav-item">
+                                            <?php echo anchor('Autentica/edit_user/' .  $user->id,' ',array('class' => 'fas fa-user-edit fa-lg ', 'style'=>'color:green','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
+                                        </li>
+                                        <li class="nav-item">
+                                            <?php echo anchor('#' .  $user->id,' ',array('class' => 'fas fa-user-times fa-lg', 'style'=>'color:tomato','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Excluir este usuário')) ; ?>
+                                        </li>
+                                    </ul>
+                                </td>
                             </tr>
                         <?php endforeach;?>
                     </tbody>
@@ -64,7 +89,43 @@
     <!-- /.col-12 -->
 </div>
 <!-- /.row -->
+<div class="modal fade" id="modal-sm" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Small Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h1><?php echo lang('Auth.deactivate_heading');?></h1>
+                
+                <p><?php echo sprintf(lang('Auth.deactivate_subheading'), $user->username);?></p>
 
+                    <?php echo form_open('/Autentica/deactivate/' . $user->id);?>
+
+                    <p>
+                        <?php echo form_label(lang('Auth.deactivate_confirm_y_label'), 'confirm');?>
+                        <input type="radio" name="confirm" value="yes" checked="checked" />
+                        <?php echo form_label(lang('Auth.deactivate_confirm_n_label'), 'confirm');?>
+                        <input type="radio" name="confirm" value="no" />
+                    </p>
+
+                <?php echo form_hidden('id', $user->id); ?>
+
+                <p><?php echo form_submit('submit', lang('Auth.deactivate_submit_btn'));?></p>
+
+                <?php echo form_close();?>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+</div>
 <?= $this->endSection() ?>
 
 <?= $this->section('templates/scripts_adicionais') ?>
