@@ -62,7 +62,9 @@
                                     <?php endforeach?>
                                 </td>
                                 <td class="text-center align-middle">
+                                    
                                     <?php 
+                                        echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-ident="'.$user->username.'"><i class="fas fa-times-circle fa-lg"></i> </button>';
                                         echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
                                         anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                     ?>
@@ -89,13 +91,13 @@
     <!-- /.col-12 -->
 </div>
 <!-- /.row -->
-<div class="modal fade" id="modal-sm" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+<div class="modal fade" id="modal-active-user" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Small Modal</h4>
+              <h4 class="modal-title">Desabilita Usuário</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
@@ -103,8 +105,8 @@
                 
                 <p><?php echo sprintf(lang('Auth.deactivate_subheading'), $user->username);?></p>
 
-                    <?php echo form_open('/Autentica/deactivate/' . $user->id);?>
-
+                    <?php //echo form_open('/Autentica/deactivate/' . $user->id);?>
+                    <form id="form-modal" action="">
                     <p>
                         <?php echo form_label(lang('Auth.deactivate_confirm_y_label'), 'confirm');?>
                         <input type="radio" name="confirm" value="yes" checked="checked" />
@@ -112,15 +114,13 @@
                         <input type="radio" name="confirm" value="no" />
                     </p>
 
-                <?php echo form_hidden('id', $user->id); ?>
+                <?php echo form_hidden('Name','$user->id','id', $user->id); ?>
 
                 <p><?php echo form_submit('submit', lang('Auth.deactivate_submit_btn'));?></p>
-
-                <?php echo form_close();?>
+                </form>
+                <?php //echo form_close();?>
             </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            
           </div>
           <!-- /.modal-content -->
         </div>
@@ -129,7 +129,21 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('templates/scripts_adicionais') ?>
+    
     <script>
+        $('#modal-active-user').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var userid = button.data('id')
+            
+            // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            $('#form-modal').attr('action','/Autentica/deactivate/'+userid)
+            $('#id_user').attr('value',userid)
+            //modal.find('.modal-title').text('New message to ' + recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
         $(function () {
             $("#example1").DataTable({
                 "responsive": true,
