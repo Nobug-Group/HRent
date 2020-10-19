@@ -37,7 +37,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="user_list" class="table table-bordered table-striped">
+                <table id="user_list" class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
                             <th><?php echo lang('Auth.index_fname_th');?></th>
@@ -51,9 +51,9 @@
                     <tbody>
                         <?php foreach ($users as $user):?>
                             <tr>
-                                <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
-                                <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
-                                <td><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>
+                                <td class="align-middle"><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
+                                <td class="align-middle"><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
+                                <td class="align-middle"><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>
                                 <td class="text-center align-middle"> 
                                     <?php foreach ($user->groups as $group):?>
                                         <?php 
@@ -64,9 +64,10 @@
                                 <td class="text-center align-middle">
                                     
                                     <?php 
-                                        echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-ident="'.$user->username.'"><i class="fas fa-times-circle fa-lg"></i> </button>';
-                                        echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
+                                        echo ($user->active) ? '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-username="'.$user->username.'"><i class="fas fa-check fa-lg" style="color:green"></i></button>':
                                         anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
+                                        //echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
+                                        //anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
@@ -101,20 +102,21 @@
               </button>
             </div>
             <div class="modal-body">
-                <h1><?php echo lang('Auth.deactivate_heading');?></h1>
                 
-                <p><?php echo sprintf(lang('Auth.deactivate_subheading'), $user->username);?></p>
+                <?php 
+                    
+                    echo '<p>Deseja desativar o usuário:</p>'.'<p id="username" name="username"></p>';
+                ?>
 
                     <?php //echo form_open('/Autentica/deactivate/' . $user->id);?>
-                    <form id="form-modal" action="">
+                    <form id="form-modal" action="" method="POST">
                     <p>
                         <?php echo form_label(lang('Auth.deactivate_confirm_y_label'), 'confirm');?>
                         <input type="radio" name="confirm" value="yes" checked="checked" />
                         <?php echo form_label(lang('Auth.deactivate_confirm_n_label'), 'confirm');?>
                         <input type="radio" name="confirm" value="no" />
                     </p>
-
-                <?php echo form_hidden('Name','$user->id','id', $user->id); ?>
+                <input type="hidden" name="id" id="id"></input>
 
                 <p><?php echo form_submit('submit', lang('Auth.deactivate_submit_btn'));?></p>
                 </form>
@@ -134,15 +136,16 @@
         $('#modal-active-user').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var userid = button.data('id')
+            var username = button.data('username')
             
             // Extract info from data-* attributes
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
             $('#form-modal').attr('action','/Autentica/deactivate/'+userid)
-            $('#id_user').attr('value',userid)
+            $('#id').attr('value',userid)
             //modal.find('.modal-title').text('New message to ' + recipient)
-            //modal.find('.modal-body input').val(recipient)
+            $('#username').text(username)
         })
         $(function () {
             $("#example1").DataTable({
