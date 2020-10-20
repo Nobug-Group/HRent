@@ -256,3 +256,17 @@
           <!-- /.col-md-6 -->
         </div>
 <?= $this->endSection() ?>
+
+<!-- 
+    Este conteudo vai para scrips templates/scrips.php
+-->
+<?= $this->section('templates/scripts_adicionais') ?>
+    <script>
+      $(function(){
+        $('#nav_dashboard').addClass('active disabled')
+      });
+
+    </script>    
+
+    <!-- Insira aqui scripts adicionais para sua view -->
+<?= $this->endSection() ?>

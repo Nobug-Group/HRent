@@ -24,17 +24,21 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <div class="col">
+                <div class="col-6">
                     <h3 class="card-title">Lista de Usuários</h3>
                 </div>
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                       <a class="btn btn-default" href="/Main/create_user" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo usuário ao Sistema"><i class="fas fa-user-plus fa-2x"></i></a>
-                    </li>
-                </ul>
-                    
-                </div>
+                <div class="col">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="btn btn-default" href="/Main/create_user" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo usuário ao Sistema"><i class="fas fa-user-plus fa-2x"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-default" href="/Main/create_group" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo grupo ao Sistema"><i class="fas fa-plus fa-2x"></i></a>
+                        </li>
+                    </ul>
+                </div> 
             </div>
+            
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="user_list" class="table table-bordered table-striped table-sm">
@@ -66,14 +70,14 @@
                                     <?php 
                                         echo ($user->active) ? '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-username="'.$user->username.'"><i class="fas fa-check fa-lg" style="color:green"></i></button>':
                                         anchor("Autentica/activate/". $user->id, '<i class="fas fa-times-circle fa-lg"></i>', array('class' => 'btn btn-default' ,  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
-                                        //echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
+                                        //echo ($user->active) ? anchor('auth/change_password/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
                                         //anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
                                     <ul class="nav">
                                         <li class="nav-item">
-                                            <?php echo anchor('Autentica/edit_user/'.$user->id,'<i class="fas fa-user-edit fa-lg"></i>',array('class' => 'btn btn-default', 'style'=>'color:green','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
+                                            <?php echo anchor('Autentica/edit_user/'.$user->id,'<i class="fas fa-user-edit fa-lg"></i>',array('class' => 'btn btn-default', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
                                         </li>
                                         <li class="nav-item">
                                             <?php //echo anchor('#' .  $user->id,'<i class="fas fa-user-times fa-lg"></i>',array('class' => 'btn btn-default', 'style'=>'color:tomato','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Excluir este usuário')) ; ?>
@@ -93,7 +97,7 @@
 </div>
 <!-- /.row -->
 <div class="modal fade" id="modal-active-user" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Desabilita Usuário</h4>
@@ -150,6 +154,7 @@
         $(function () {
             $('#nav_menu_main').addClass('menu-open')
             $('#nav_geruser').addClass('active disabled')
+            $('#nav_main_button').addClass('active')
             $("#example1").DataTable({
                 "responsive": true,
                 "autoWidth": false,

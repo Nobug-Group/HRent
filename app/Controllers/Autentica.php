@@ -207,7 +207,7 @@ class Autentica extends BaseController{
 	{
 		if (! $this->ionAuth->loggedIn())
 		{
-			return redirect()->to('/auth/login');
+			return redirect()->to('login');
 		}
 		
 		$this->validation->setRule('old', lang('Auth.change_password_validation_old_password_label'), 'required');
@@ -425,12 +425,12 @@ class Autentica extends BaseController{
 					{
 						// if the password was successfully changed
 						$this->session->setFlashdata('message', $this->ionAuth->messages());
-						return redirect()->to('/auth/login');
+						return redirect()->to('login');
 					}
 					else
 					{
 						$this->session->setFlashdata('message', $this->ionAuth->errors($this->validationListTemplate));
-						return redirect()->to('/auth/reset_password/' . $code);
+						return redirect()->to('auth/reset_password/' . $code);
 					}
 				}
 			}
@@ -803,7 +803,7 @@ class Autentica extends BaseController{
 
 		if (! $this->ionAuth->loggedIn() || ! $this->ionAuth->isAdmin())
 		{
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 
 		// validate form input
@@ -817,7 +817,7 @@ class Autentica extends BaseController{
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->setFlashdata('message', $this->ionAuth->messages());
-				return redirect()->to('/auth');
+				return redirect()->to('/Autentica');
 			}
 		}
 		else
@@ -838,7 +838,8 @@ class Autentica extends BaseController{
 				'type'  => 'text',
 				'value' => set_value('description'),
 			];
-
+			$this->data['isadmin'] = $this->ionAuth->isAdmin();
+			$this->data['logged_user'] = $this->fullName();
 			return $this->renderPage($this->viewsFolder . DIRECTORY_SEPARATOR . 'create_group', $this->data);
 		}
 	}
@@ -855,14 +856,14 @@ class Autentica extends BaseController{
 		// bail if no group id given
 		if (! $id)
 		{
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 
 		$this->data['title'] = lang('Auth.edit_group_title');
 
 		if (! $this->ionAuth->loggedIn() || ! $this->ionAuth->isAdmin())
 		{
-			return redirect()->to('/auth');
+			return redirect()->to('/Autentica');
 		}
 
 		$group = $this->ionAuth->group($id)->row();
@@ -884,7 +885,7 @@ class Autentica extends BaseController{
 				{
 					$this->session->setFlashdata('message', $this->ionAuth->errors($this->validationListTemplate));
 				}
-				return redirect()->to('/auth');
+				return redirect()->to('/Autentica');
 			}
 		}
 
@@ -909,7 +910,8 @@ class Autentica extends BaseController{
 			'type'  => 'text',
 			'value' => set_value('group_description', $group->description),
 		];
-
+		$this->data['isadmin'] = $this->ionAuth->isAdmin();
+		$this->data['logged_user'] = $this->fullName();
 		return $this->renderPage($this->viewsFolder . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
 	}
 

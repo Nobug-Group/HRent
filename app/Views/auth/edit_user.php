@@ -26,6 +26,7 @@
 -->
 <?= $this->section('templates/fullpath') ?>
     <li class="breadcrumb-item"><a href="/Main">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/Main/gerenciarUsuarios">Gerenciamento de Usuários</a></li>
     <li class="breadcrumb-item active">Editar Usuário</li>
 <?= $this->endSection() ?>
 
@@ -38,9 +39,9 @@
     <div class="col-12">
         <!-- Insira aqui css adicionais para sua view -->
         <!-- left column -->
-        <div class="col-md-12">
+        <div class="col-md-6">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-default">
               <div class="card-header">
                 <h3 class="card-title">Editar Usuário</h3>
               </div>
@@ -101,7 +102,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
               </form>
             </div>
@@ -119,5 +120,11 @@
     Este conteudo vai para scrips templates/scrips.php
 -->
 <?= $this->section('templates/scripts_adicionais') ?>
-    <!-- Insira aqui scripts adicionais para sua view -->
+    <script>
+      $(function () {
+        $('#nav_menu_main').addClass('menu-open')
+        $('#nav_geruser').addClass('active disabled')
+        $('#nav_main_button').addClass('active')
+      });
+    </script>
 <?= $this->endSection() ?>

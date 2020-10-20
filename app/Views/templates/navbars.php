@@ -153,7 +153,7 @@
                with font-awesome or any other icon font library -->
           
           <li class="nav-item">
-            <a href="/Main" class="nav-link">
+            <a id="nav_dashboard" href="/Main" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -163,7 +163,7 @@
           </li>
           <?php if ($isadmin): ?>
             <li id="nav_menu_main" class="nav-item has-treeview mt-2 pb-2 mb-2">
-              <a href="#" class="nav-link">
+              <a id="nav_main_button" href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Usuários e Grupos
@@ -178,7 +178,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="/Main/edit_group" class="nav-link">
                     <i class="fas fa-users-cog"></i>
                     <p>Gerenciar Grupos</p>
                   </a>
