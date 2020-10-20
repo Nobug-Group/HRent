@@ -162,7 +162,7 @@
             </a>
           </li>
           <?php if ($isadmin): ?>
-            <li class="nav-item has-treeview menu-close mt-2 pb-2 mb-2">
+            <li id="nav_menu_main" class="nav-item has-treeview mt-2 pb-2 mb-2">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
@@ -172,7 +172,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/Main/gerenciarUsuarios" class="nav-link">
+                  <a id="nav_geruser" href="/Main/gerenciarUsuarios" class="nav-link">
                     <i class="fas fa-user-cog"></i>
                     <p>Gerenciar Usuários</p>
                   </a>

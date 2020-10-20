@@ -29,7 +29,7 @@
                 </div>
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                       <a href="/Main/create_user" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo usuário ao Sistema"><i class="fas fa-user-plus fa-2x"></i></a>
+                       <a class="btn btn-default" href="/Main/create_user" data-toggle="tooltip" data-placement="bottom" title="Adicionar novo usuário ao Sistema"><i class="fas fa-user-plus fa-2x"></i></a>
                     </li>
                 </ul>
                     
@@ -65,7 +65,7 @@
                                     
                                     <?php 
                                         echo ($user->active) ? '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-username="'.$user->username.'"><i class="fas fa-check fa-lg" style="color:green"></i></button>':
-                                        anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
+                                        anchor("Autentica/activate/". $user->id, '<i class="fas fa-times-circle fa-lg"></i>', array('class' => 'btn btn-default' ,  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                         //echo ($user->active) ? anchor('Autentica/deactivate/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
                                         //anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                     ?>
@@ -73,10 +73,10 @@
                                 <td class="text-center align-middle">
                                     <ul class="nav">
                                         <li class="nav-item">
-                                            <?php echo anchor('Autentica/edit_user/' .  $user->id,' ',array('class' => 'fas fa-user-edit fa-lg ', 'style'=>'color:green','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
+                                            <?php echo anchor('Autentica/edit_user/'.$user->id,'<i class="fas fa-user-edit fa-lg"></i>',array('class' => 'btn btn-default', 'style'=>'color:green','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
                                         </li>
                                         <li class="nav-item">
-                                            <?php echo anchor('#' .  $user->id,' ',array('class' => 'fas fa-user-times fa-lg', 'style'=>'color:tomato','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Excluir este usuário')) ; ?>
+                                            <?php //echo anchor('#' .  $user->id,'<i class="fas fa-user-times fa-lg"></i>',array('class' => 'btn btn-default', 'style'=>'color:tomato','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Excluir este usuário')) ; ?>
                                         </li>
                                     </ul>
                                 </td>
@@ -105,14 +105,14 @@
                 
                 <?php 
                     
-                    echo '<p>Deseja desativar o usuário:</p>'.'<p id="username" name="username"></p>';
+                    echo '<p>Deseja desativar o usuário:</p>'.'<b><p id="username" name="username"></p></b>';
                 ?>
 
                     <?php //echo form_open('/Autentica/deactivate/' . $user->id);?>
                     <form id="form-modal" action="" method="POST">
                     <p>
                         <?php echo form_label(lang('Auth.deactivate_confirm_y_label'), 'confirm');?>
-                        <input type="radio" name="confirm" value="yes" checked="checked" />
+                        <input type="radio" name="confirm" value="yes" checked="checked" /></br>
                         <?php echo form_label(lang('Auth.deactivate_confirm_n_label'), 'confirm');?>
                         <input type="radio" name="confirm" value="no" />
                     </p>
@@ -148,17 +148,19 @@
             $('#username').text(username)
         })
         $(function () {
+            $('#nav_menu_main').addClass('menu-open')
+            $('#nav_geruser').addClass('active disabled')
             $("#example1").DataTable({
                 "responsive": true,
                 "autoWidth": false,
             });
-            $('#example2').DataTable({
+            $('#user_list').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
                 "ordering": true,
-                "info": true,
-                "autoWidth": false,
+                "info": false,
+                "autoWidth": true,
                 "responsive": true,
             });
         });

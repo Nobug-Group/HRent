@@ -90,5 +90,6 @@
     Este conteudo vai para scrips templates/scrips.php
 -->
 <?= $this->section('templates/scripts_adicionais') ?>
+                    
     <!-- Insira aqui scripts adicionais para sua view -->
 <?= $this->endSection() ?>
