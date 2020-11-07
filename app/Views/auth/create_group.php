@@ -43,7 +43,7 @@
                 <h3 class="card-title">Editar Grupo</h3>
               </div>
               <!-- /.card-header -->
-                <?php echo form_open("auth/create_group");?>
+                <?php echo form_open("Main/create_group");?>
                     <div class="card-body">
                         <div class="form-group">
                             <?php echo form_label(lang('Auth.edit_group_name_label'), 'group_name');?> <br />
