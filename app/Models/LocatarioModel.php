@@ -12,13 +12,14 @@ use CodeIgniter\Model;
  */
 
 class LocatarioModel extends Model{
-    protected $db;
+
 	protected $table = 'db_pessoa';
 	protected $primaryKey = 'idpessoa';
     protected $returnType = '\App\Entities\Locatario';
     protected $allowedFields = [
         'nome_razao', 'tipo_pessoa','email','rg','cpf_cnpj'
-    ];
+	];
+	
     /* public function __construct()
 	{
 		// initialize the database
@@ -45,12 +46,8 @@ class LocatarioModel extends Model{
 
 		$this->triggerEvents('model_constructor');
     } */
-    
-    public function salvarLocatario($locatario){
-		
-    }
 
-    public function db()
+	public function db()
 	{
 		return $this->db;
 	}
