@@ -13,8 +13,13 @@ use CodeIgniter\Model;
 
 class LocatarioModel extends Model{
     protected $db;
-
-    public function __construct()
+	protected $table = 'db_pessoa';
+	protected $primaryKey = 'idpessoa';
+    protected $returnType = '\App\Entities\Locatario';
+    protected $allowedFields = [
+        'nome_razao', 'tipo_pessoa','email','rg','cpf_cnpj'
+    ];
+    /* public function __construct()
 	{
 		// initialize the database
 		if (empty($this->config->databaseGroupName))
@@ -29,26 +34,20 @@ class LocatarioModel extends Model{
 		}
 
 		// initialize db tables data
-		$this->tables = $this->config->tables;
+		$this->tables = $this->config->datatabl;
 
 		// initialize data
 		$this->identityColumn = $this->config->identity;
 		$this->join           = $this->config->join;
 
-		// initialize hash method options (Bcrypt)
-		$this->hashMethod = $this->config->hashMethod;
-
 		// load the messages template from the config file
 		$this->messagesTemplates = $this->config->templates['messages'];
 
-		// initialize our hooks object
-		$this->ionHooks = new \stdClass();
-
 		$this->triggerEvents('model_constructor');
-    }
+    } */
     
-    public function salvarLocatario(){
-
+    public function salvarLocatario($locatario){
+		
     }
 
     public function db()
