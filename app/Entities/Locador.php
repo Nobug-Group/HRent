@@ -3,7 +3,7 @@
 namespace app\Entities;
 use \App\Entities\Pessoa;
 /**
- * Class Locatario
+ * Class Locador
  *
  * @property The HRent
  * @package  CodeIgniter-HRent
@@ -11,8 +11,8 @@ use \App\Entities\Pessoa;
  * @license  https://opensource.org/licenses/MIT	MIT License
  */
 
-Class Locatario extends Pessoa {
+Class Locador extends Pessoa {
     public function __construct(){
-        parent::__set('tipo_pessoa','Locatario');
+        parent::__set('tipo_pessoa','Locador');
     }
 }

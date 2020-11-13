@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use \App\Entities\Locador as Locador;
 use \App\Entities\Locatario as Locatario;
-use LocatarioModel;
+use PessoaModel;
 
 class Teste extends BaseController{
     private $locatario;
@@ -15,7 +16,7 @@ class Teste extends BaseController{
         $this->locatario->rg = 350487772;
         $this->locatario->cpf_cnpj = 30340546892;
 
-        $model = new LocatarioModel();
-        $model->insert($this->locatario);
+        $model = new PessoaModel($this->locatario);
+        $model->inserirPessoa();
     }
 }

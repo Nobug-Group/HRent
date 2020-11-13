@@ -1,5 +1,8 @@
 <?php
 
+use app\Entities\Locador;
+use app\Entities\Locatario;
+use app\Entities\Pessoa;
 use CodeIgniter\Model;
 
 /**
@@ -11,15 +14,33 @@ use CodeIgniter\Model;
  * @license  https://opensource.org/licenses/MIT	MIT License
  */
 
-class LocatarioModel extends Model{
+class PessoaModel extends Model{
 
 	protected $table = 'db_pessoa';
 	protected $primaryKey = 'idpessoa';
-    protected $returnType = '\App\Entities\Locatario';
+    protected $returnType = null;
     protected $allowedFields = [
-        'nome_razao', 'tipo_pessoa','email','rg','cpf_cnpj'
+        'nome_razao', 'tipo_pessoa','email','rg','cpf_cnpj','status'
 	];
+	protected $pessoa = null;
 	
+	public function __construct($pessoa){
+		if($pessoa instanceof Locatario)
+			$this->returnType = '\App\Entities\Locatario';
+		elseif($pessoa instanceof Locador)
+			$this->returnType = '\App\Entities\Locador';
+		elseif($pessoa instanceof Pessoa)
+			$this->returnType = '\App\Entities\Pessoa';
+
+		$this->pessoa = $pessoa;
+
+	}
+
+	public function inserirPessoa()
+	{
+		parent::insert($this->pessoa);
+	}
+
     /* public function __construct()
 	{
 		// initialize the database
