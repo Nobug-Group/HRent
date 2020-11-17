@@ -187,7 +187,24 @@
             </li>
           <?php endif ?>
           
-           
+          <li id="nav_menu_main" class="nav-item has-treeview mt-2 pb-2 mb-2">
+              <a id="nav_main_button" href="#" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                  Cadastros
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a id="nav_geruser" href="/Main/cadLocador" class="nav-link">
+                    <i class="fas fa-user-cog"></i>
+                    <p>Gerenciar Locador</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-home"></i>

@@ -1,10 +1,10 @@
 <!--
     Carrega Template Base
-    Este conteudo é carregado a partir de templates/main.php
+    Este conteudo é carregado a partir de Views/templates/main.php
 -->
 <?= $this->extend('templates/main') ?>
 
-<!-- Este conteudo vai para head templates/head.php -->
+<!-- Este conteudo vai para head Views/templates/head.php -->
 <?= $this->section('templates/styles_adicionais') ?>
     <!-- Insira aqui css adicionais para sua view -->
 <?= $this->endSection() ?>

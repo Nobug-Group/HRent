@@ -13,7 +13,7 @@ use CodeIgniter\Entity;
  * @license  https://opensource.org/licenses/MIT	MIT License
  */
 
-Class Pessoa extends Entity{
+Class Pessoa{
 
     protected $idpessoa;
     protected $nome_razao;
@@ -23,7 +23,7 @@ Class Pessoa extends Entity{
     protected $cpf_cnpj;
     protected $status;
     
-    /* public function __get($key)
+    public function __get($key)
     {
         if (property_exists($this, $key))
         {
@@ -37,7 +37,7 @@ Class Pessoa extends Entity{
         {
             $this->$key = $value;
         }
-    } */
+    }
 
     
 }

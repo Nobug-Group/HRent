@@ -3,6 +3,8 @@
 use app\Entities\Locador;
 use app\Entities\Locatario;
 use app\Entities\Pessoa;
+use app\Entities\Fiador;
+use app\Entities\Imobiliaria;
 use CodeIgniter\Model;
 
 /**
@@ -25,13 +27,18 @@ class PessoaModel extends Model{
 	protected $pessoa = null;
 	
 	public function __construct($pessoa){
+
 		if($pessoa instanceof Locatario)
 			$this->returnType = '\App\Entities\Locatario';
 		elseif($pessoa instanceof Locador)
 			$this->returnType = '\App\Entities\Locador';
+		elseif($pessoa instanceof Fiador)
+			$this->returnType = '\App\Entities\Fiador';
+		elseif($pessoa instanceof Imobiliaria)
+			$this->returnType = '\App\Entities\Imobiliaria';
 		elseif($pessoa instanceof Pessoa)
 			$this->returnType = '\App\Entities\Pessoa';
-
+		
 		$this->pessoa = $pessoa;
 
 	}
@@ -41,36 +48,10 @@ class PessoaModel extends Model{
 		parent::insert($this->pessoa);
 	}
 
-    /* public function __construct()
+	public function updatePessoa($id = null, $data = null): bool
 	{
-		// initialize the database
-		if (empty($this->config->databaseGroupName))
-		{
-			// By default, use CI's db that should be already loaded
-			$this->db = \Config\Database::connect();
-		}
-		else
-		{
-			// For specific group name, open a new specific connection
-			$this->db = \Config\Database::connect($this->config->databaseGroupName);
-		}
-
-		// initialize db tables data
-		$this->tables = $this->config->datatabl;
-
-		// initialize data
-		$this->identityColumn = $this->config->identity;
-		$this->join           = $this->config->join;
-
-		// load the messages template from the config file
-		$this->messagesTemplates = $this->config->templates['messages'];
-
-		$this->triggerEvents('model_constructor');
-    } */
-
-	public function db()
-	{
-		return $this->db;
+		return parent::update($id,$data);
 	}
+	
 
 }
