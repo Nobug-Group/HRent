@@ -22,6 +22,7 @@ Class Pessoa{
     protected $rg;
     protected $cpf_cnpj;
     protected $status;
+    protected $contato;
     
     public function __get($key)
     {
