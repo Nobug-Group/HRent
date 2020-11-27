@@ -1,11 +1,10 @@
 <?php
 
 namespace app\Entities;
-use \App\Entities\GenericObj;
 use CodeIgniter\Entity;
 
 /**
- * Class Pessoa
+ * Class Contato    
  *
  * @property The HRent
  * @package  CodeIgniter-HRent
@@ -13,16 +12,12 @@ use CodeIgniter\Entity;
  * @license  https://opensource.org/licenses/MIT	MIT License
  */
 
-Class Pessoa{
+Class Contato{
 
     protected $idpessoa;
-    protected $nome_razao;
-    protected $email;
-    protected $tipo_pessoa;
-    protected $rg;
-    protected $cpf_cnpj;
-    protected $status;
-    protected $contato;
+    protected $tipo;
+    protected $numero;
+    protected $operadora;
     
     public function __get($key)
     {
@@ -39,6 +34,4 @@ Class Pessoa{
             $this->$key = $value;
         }
     }
-
-    
 }

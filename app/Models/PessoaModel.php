@@ -1,10 +1,10 @@
 <?php
 
-use app\Entities\Locador;
-use app\Entities\Locatario;
-use app\Entities\Pessoa;
-use app\Entities\Fiador;
-use app\Entities\Imobiliaria;
+use app\Entities\Pessoa\Locador;
+use app\Entities\Pessoa\Locatario;
+use app\Entities\Pessoa\Pessoa;
+use app\Entities\Pessoa\Fiador;
+use app\Entities\Pessoa\Imobiliaria;
 use CodeIgniter\Model;
 
 /**

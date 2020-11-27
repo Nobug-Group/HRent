@@ -74,7 +74,7 @@ class Main extends Autentica{
 			//list the users
 			$this->data['logged_user'] = $this->fullname();
 			
-			return $this->renderPage('pessoa/locador', $this->data);
+			return $this->renderPage('Pessoa/pessoa/locador', $this->data);
 		}
 	}
 	
