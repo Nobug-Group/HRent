@@ -1,7 +1,7 @@
 <?php
 
-namespace app\Entities;
-use \App\Entities\Pessoa;
+namespace app\Entities\Pessoa;
+use \App\Entities\Pessoa\Pessoa;
 /**
  * Class Locatario
  *

@@ -70,17 +70,12 @@
                                     <?php 
                                         echo ($user->active) ? '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-active-user" data-id="'.$user->id.'" data-username="'.$user->username.'"><i class="fas fa-check fa-lg" style="color:green"></i></button>':
                                         anchor("Autentica/activate/". $user->id, '<i class="fas fa-times-circle fa-lg"></i>', array('class' => 'btn btn-default' ,  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
-                                        //echo ($user->active) ? anchor('auth/change_password/' . $user->id, ' ', array('class' => 'fas fa-check fa-lg','style'=>'color:green', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Desativar este usuário')):
-                                        //anchor("Autentica/activate/". $user->id, ' ', array('class' => 'fas fa-times-circle fa-lg',  'style'=>'color:Tomato', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Ativar este usuário'));
                                     ?>
                                 </td>
                                 <td class="text-center align-middle">
                                     <ul class="nav">
                                         <li class="nav-item">
                                             <?php echo anchor('Autentica/edit_user/'.$user->id,'<i class="fas fa-user-edit fa-lg"></i>',array('class' => 'btn btn-default', 'data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Editar este usuário')) ; ?>
-                                        </li>
-                                        <li class="nav-item">
-                                            <?php //echo anchor('#' .  $user->id,'<i class="fas fa-user-times fa-lg"></i>',array('class' => 'btn btn-default', 'style'=>'color:tomato','data-toggle'=>'tooltip', 'data-placement'=>'bottom', 'title'=>'Excluir este usuário')) ; ?>
                                         </li>
                                     </ul>
                                 </td>

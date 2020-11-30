@@ -20,12 +20,14 @@ class PessoaModel extends Model{
 
 	protected $table = 'db_pessoa';
 	protected $primaryKey = 'idpessoa';
-    protected $returnType = null;
+    protected $returnType = '\App\Entities\Pessoa\Pessoa';
     protected $allowedFields = [
         'nome_razao', 'tipo_pessoa','email','rg','cpf_cnpj','status'
 	];
 	protected $pessoa = null;
 	
+	
+
 	public function __construct($pessoa){
 
 		if($pessoa instanceof Locatario)
@@ -52,6 +54,7 @@ class PessoaModel extends Model{
 	{
 		return parent::update($id,$data);
 	}
+	
 	
 
 }

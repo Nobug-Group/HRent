@@ -1,7 +1,8 @@
-<?php namespace App\Controllers;
+<?php 
+namespace App\Controllers;
 
-use \App\Entities\Locador as Locador;
 use PessoaModel;
+use \App\Entities\Pessoa\Locador as Locador;
 
 class Main extends Autentica{
 
@@ -55,6 +56,7 @@ class Main extends Autentica{
 			{
 				$this->data['users'][$k]->groups = $this->ionAuth->getUsersGroups($user->id)->getResult();
 			}
+			//var_dump($this->data);
 			return $this->renderPage('user_manager', $this->data);
 		}
 	}
@@ -74,7 +76,7 @@ class Main extends Autentica{
 			//list the users
 			$this->data['logged_user'] = $this->fullname();
 			
-			return $this->renderPage('Pessoa/pessoa/locador', $this->data);
+			return $this->renderPage('pessoa/locador', $this->data);
 		}
 	}
 	
@@ -91,6 +93,36 @@ class Main extends Autentica{
 			$model->inserirPessoa();
 		}
 
-		return redirect()->to('/Main/cadLocador');
+		return redirect()->to('/Main/gerenciaLocador');
+	}
+	
+	public function gerenciaLocador(){
+		
+		if (! $this->ionAuth->loggedIn())
+		{
+			// redirect them to the login page
+			return redirect()->to('/Autentica/login');
+		}
+		else
+		{
+			$this->data['title'] = 'Gerenciar Locador';
+			$this->data['isadmin'] = $this->ionAuth->isAdmin();
+			// set the flash data error message if there is one
+			$this->data['message'] = $this->validation->getErrors() ? $this->validation->listErrors($this->validationListTemplate) : $this->session->getFlashdata('message');
+			//list the users
+			$this->data['logged_user'] = $this->fullname();
+
+			$this->locador = new Locador();
+			$model = new PessoaModel($this->locador);
+			
+			$locadores = $model->asArray()
+								->where('tipo_pessoa =', 'Locador')
+								->findAll();
+
+			
+			$this->data['locadores'] = $locadores;
+			//var_dump($this->data);
+			return $this->renderPage('/pessoa/gerLocador', $this->data);
+		}
 	}
 }

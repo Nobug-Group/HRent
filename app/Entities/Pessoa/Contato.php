@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Entities;
+namespace app\Entities\Pessoa;
 use CodeIgniter\Entity;
 
 /**
